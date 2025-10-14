@@ -9,7 +9,7 @@ WORKDIR /source
 
 # Copia o arquivo do projeto (.csproj) primeiro e restaura as dependências.
 # Isso aproveita o cache do Docker. Se as dependências não mudarem, ele não baixa tudo de novo.
-COPY *.csproj .
+COPY ["DevBrecho/DevBrecho.csproj", "DevBrecho/"]
 RUN dotnet restore
 
 # Copia todo o resto do código-fonte do seu projeto para o container.
@@ -17,7 +17,7 @@ COPY . .
 
 # Publica a aplicação em modo Release, otimizada para produção.
 # O resultado será colocado na pasta /app/publish.
-RUN dotnet publish -c Release -o /app/publish
+RUN dotnet publish "DevBrecho.csproj" -c Release -o /app/publish
 
 # ===================================================================
 # Estágio 2: Final (O Prato Final - leve e pronto para servir)
