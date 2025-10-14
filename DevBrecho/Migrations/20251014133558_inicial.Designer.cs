@@ -13,7 +13,7 @@ namespace DevBrecho.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20251014133558_inicial")]
-    partial class inicial
+    partial class Inicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
