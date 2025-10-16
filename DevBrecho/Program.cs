@@ -3,7 +3,23 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// ----- INÍCIO DO CÓDIGO DE DIAGNÓSTICO -----
+
+// 1. Pega a string de conexão EXATAMENTE como a aplicação a lê.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+// 2. Escreve a string de conexão diretamente no console/log de forma bem visível.
+Console.WriteLine("----------------------------------------------------------");
+Console.WriteLine($"--- MINHA CONNECTION STRING É: '{connectionString}' ---");
+Console.WriteLine("----------------------------------------------------------");
+
+// 3. Força a aplicação a quebrar com uma mensagem clara se a string for nula ou vazia.
+if (string.IsNullOrEmpty(connectionString))
+{
+    throw new InvalidOperationException("A string de conexão 'DefaultConnection' NÃO FOI ENCONTRADA ou está VAZIA nas configurações. Verifique o nome da variável de ambiente (ConnectionStrings__DefaultConnection).");
+}
+
+// ----- FIM DO CÓDIGO DE DIAGNÓSTICO -----
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString));
 
