@@ -18,9 +18,9 @@ namespace DevBrecho.Controllers
 
         // GET: api/Setor
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Setor>>> GetSetores()
+        public async Task<bool> GetSetores()
         {
-            return await _context.Setores.ToListAsync();
+            return true;
         }
 
         // GET: api/Setor/5
